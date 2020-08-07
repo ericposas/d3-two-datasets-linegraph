@@ -55,6 +55,15 @@ window.start = () => {
 	.attr('stroke', 'black')
 	.attr('r', 4)
 
+	let texts = svg.append('g')
+	.selectAll('text')
+	.data(data).enter().append('text')
+	.text(d => '[ ' + d[0] + ', ' + d[1] + ' ]')
+	.attr('x', d => scX(d[0] + 2))
+	.attr('y', d => scY(d[1] - 1))
+	.attr('fill', 'lightgrey')
+	.attr('class', 'text-coord')
+
 	lineGrph.call(animateLineGraph)
 
 	console.log(data)
@@ -87,6 +96,13 @@ window.start = () => {
 		.attr('r', 4)
 		.attr('stroke-width', '.5')
 		.attr('stroke', 'black')
+
+		texts.data(data)
+		.transition().duration(500)
+		.text(d => '[ ' + d[0] + ', ' + d[1] + ' ]')
+		.attr('x', d => scX(d[0] + 2))
+		.attr('y', d => scY(d[1] - 1))
+		.attr('class', 'text-coord')
 
 		lineGrph.attr('d', lineMkr(data))
 
