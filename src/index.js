@@ -80,6 +80,7 @@ window.start = () => {
 		let len = lineGrph.node().getTotalLength()
 
 		dots.data(data)
+		.transition().duration(500)
 		.attr('cx', d => scX(d[0]))
 		.attr('cy', d => scY(d[1]))
 		.attr('fill', ds == 1 ? 'blue' : 'red')
